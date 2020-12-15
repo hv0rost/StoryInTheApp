@@ -16,11 +16,11 @@ import org.jetbrains.exposed.sql.Database
 import java.io.PrintWriter
 import java.util.*
 
+fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
+
 @Suppress("unused") // Referenced in application.conf
 @kotlin.jvm.JvmOverloads
-fun main() {
-    val port = System.getenv("PORT")?.toInt() ?: 8080
-    embeddedServer(Netty, port) {
+fun Application.module(testing: Boolean = false)  {
         val dm = 34.toChar()
         dbInnit("a1640Z89")
         val query = StoriesController()
@@ -76,8 +76,8 @@ fun main() {
                 }
             }
         }
-    }.start(wait = true)
-}
+    }
+
 
 fun dbInnit(password: String){
     val props = Properties()
@@ -92,5 +92,6 @@ fun dbInnit(password: String){
     val ds = HikariDataSource(config)
     Database.connect(ds)
 }
+
 
 
