@@ -22,7 +22,7 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false)  {
         val dm = 34.toChar()
-        dbInnit("a1640Z89")
+        dbInnit("b463a485eee00c04196ac8c5d76eb7b93941848999e68e37f152d92a6e582c47")
         val query = StoriesController()
         install(ContentNegotiation) {
             gson {
@@ -82,9 +82,9 @@ fun Application.module(testing: Boolean = false)  {
 fun dbInnit(password: String){
     val props = Properties()
     props.setProperty("dataSourceClassName", "org.postgresql.ds.PGSimpleDataSource")
-    props.setProperty("dataSource.user", "postgres")
+    props.setProperty("dataSource.user", "lucmeoetruzkgd")
     props.setProperty("dataSource.password", password)
-    props.setProperty("dataSource.databaseName", "SebbiaStories")
+    props.setProperty("dataSource.databaseName", "dett2jacvmrrg1")
     props["dataSource.logWriter"] = PrintWriter(System.out)
 
     val config = HikariConfig(props)
