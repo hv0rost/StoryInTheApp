@@ -117,6 +117,9 @@ private fun hikari(): HikariDataSource {
                 "?sslmode=require" + "&user=$username&password=$password"*/
 
     config.jdbcUrl = System.getenv("DATABASE_URL_KTOR")
+    config.username = System.getenv("USERNAME")
+    config.password = System.getenv("PASSWORD")
+    config.schema = "SebbiaStories"
     config.maximumPoolSize = 3
     config.isAutoCommit = false
     config.transactionIsolation = "TRANSACTION_REPEATABLE_READ"
