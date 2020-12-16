@@ -23,8 +23,8 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
     val dm = 34.toChar()
-    dbInnit("a1640Z89")
-    //Database.connect(hikari())
+    //dbInnit("a1640Z89")
+    Database.connect(hikari())
     val query = StoriesController()
     install(ContentNegotiation) {
         gson {
