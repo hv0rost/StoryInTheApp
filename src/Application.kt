@@ -97,7 +97,9 @@ fun Application.module(testing: Boolean = false) {
 }*/
 
 private fun hikari(): HikariDataSource {
-    val config = HikariConfig()
+    val props = Properties()
+    props["dataSource.logWriter"] = PrintWriter(System.out)
+    val config = HikariConfig(props)
 
     //local
     /*config.driverClassName = System.getenv("JDBC_DRIVER")
