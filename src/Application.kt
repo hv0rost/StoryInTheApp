@@ -108,7 +108,7 @@ private fun hikari(): HikariDataSource {
     config.validate()*/
 
     //product run
-    config.driverClassName = System.getenv("JDBC_DRIVER")
+    //config.driverClassName = System.getenv("JDBC_DRIVER")
     val dbUri = URL(System.getenv("DATABASE_URL"))
     val username = dbUri.userInfo.split(":").toTypedArray()[0]
     val password = dbUri.userInfo.split(":").toTypedArray()[1]
