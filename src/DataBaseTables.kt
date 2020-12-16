@@ -7,6 +7,7 @@ import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.jodatime.datetime
 
+val dm = 34.toChar()
 
 object Client : Table() {
     val idClient = integer("idClient").autoIncrement()
@@ -33,7 +34,7 @@ object Client : Table() {
             )
 }
 
-object Screen : Table() {
+object Screen : Table("$dm" + "story" + "$dm" +".screen") {
     val idScreen = (integer("idScreen").autoIncrement() references Text.idText)
     val name = varchar("name", 50)
     val urlFile = varchar("urlFile", 255)

@@ -23,8 +23,8 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
     val dm = 34.toChar()
-    //dbInnit("a1640Z89")
-    Database.connect(hikari())
+    dbInnit("a1640Z89")
+    //Database.connect(hikari())
     val query = StoriesController()
     install(ContentNegotiation) {
         gson {
@@ -81,7 +81,7 @@ fun Application.module(testing: Boolean = false) {
 }
 
 
-/*fun dbInnit(password: String){
+fun dbInnit(password: String){
     val props = Properties()
     props.setProperty("dataSourceClassName", "org.postgresql.ds.PGSimpleDataSource")
     props.setProperty("dataSource.user", "postgres")
@@ -90,27 +90,15 @@ fun Application.module(testing: Boolean = false) {
     props["dataSource.logWriter"] = PrintWriter(System.out)
 
     val config = HikariConfig(props)
-    config.schema = "SebbiaStories"
+    config.schema = "story"
     val ds = HikariDataSource(config)
-    //ds.jdbcUrl = "jdbc:postgres://lucmeoetruzkgd:b463a485eee00c04196ac8c5d76eb7b93941848999e68e37f152d92a6e582c47@ec2-54-170-190-29.eu-west-1.compute.amazonaws.com:5432/dett2jacvmrrg1"
     Database.connect(ds)
-}*/
+}
 
 private fun hikari(): HikariDataSource {
     val props = Properties()
     props["dataSource.logWriter"] = PrintWriter(System.out)
     val config = HikariConfig(props)
-
-    //local
-    /*config.driverClassName = System.getenv("JDBC_DRIVER")
-    config.jdbcUrl = System.getenv("DATABASE_URL")
-    //config.password = "b463a485eee00c04196ac8c5d76eb7b93941848999e68e37f152d92a6e582c47"
-    config.maximumPoolSize = 3
-    config.isAutoCommit = false
-    config.transactionIsolation = "TRANSACTION_REPEATABLE_READ"
-    config.validate()*/
-
-    //product run
     config.driverClassName = System.getenv("JDBC_DRIVER")
     val dbUri = URI(System.getenv("DATABASE_URL"))
     val username = dbUri.userInfo.split(":").toTypedArray()[0]
@@ -120,7 +108,7 @@ private fun hikari(): HikariDataSource {
     config.jdbcUrl = /*System.getenv("DATABASE_URL_KTOR")*/ dbUrl
     config.username = System.getenv("USERNAME")
     config.password = System.getenv("PASSWORD")
-    config.schema = "SebbiaStories"
+    config.schema = "story"
     config.maximumPoolSize = 3
     config.isAutoCommit = false
     config.transactionIsolation = "TRANSACTION_REPEATABLE_READ"
