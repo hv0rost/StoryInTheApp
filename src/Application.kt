@@ -109,13 +109,14 @@ private fun hikari(): HikariDataSource {
 
     //product run
     //config.driverClassName = System.getenv("JDBC_DRIVER")
-    val dbUri = URL(System.getenv("DATABASE_URL"))
+   /* val dbUri = URL(System.getenv("DATABASE_URL"))
     val username = dbUri.userInfo.split(":").toTypedArray()[0]
     val password = dbUri.userInfo.split(":").toTypedArray()[1]
     val dbUrl =
         "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path +
-                "?sslmode=require" + "&user=$username&password=$password"
-    config.jdbcUrl = dbUrl
+                "?sslmode=require" + "&user=$username&password=$password"*/
+
+    config.jdbcUrl = System.getenv("DATABASE_URL")
     config.maximumPoolSize = 3
     config.isAutoCommit = false
     config.transactionIsolation = "TRANSACTION_REPEATABLE_READ"
