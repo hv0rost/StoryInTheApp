@@ -116,7 +116,7 @@ private fun hikari(): HikariDataSource {
         "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path +
                 "?sslmode=require" + "&user=$username&password=$password"*/
 
-    config.jdbcUrl = System.getenv("DATABASE_URL")
+    config.jdbcUrl = System.getenv("DATABASE_URL_KTOR")
     config.maximumPoolSize = 3
     config.isAutoCommit = false
     config.transactionIsolation = "TRANSACTION_REPEATABLE_READ"
