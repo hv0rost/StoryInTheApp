@@ -13,6 +13,7 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import org.jetbrains.exposed.sql.Database
 import java.io.PrintWriter
+import java.net.URI
 import java.net.URL
 import java.util.*
 
@@ -108,15 +109,13 @@ private fun hikari(): HikariDataSource {
     config.validate()*/
 
     //product run
-    //config.driverClassName = System.getenv("JDBC_DRIVER")
-   /* val dbUri = URL(System.getenv("DATABASE_URL"))
+    config.driverClassName = System.getenv("JDBC_DRIVER")
+    val dbUri = URI(System.getenv("DATABASE_URL"))
     val username = dbUri.userInfo.split(":").toTypedArray()[0]
     val password = dbUri.userInfo.split(":").toTypedArray()[1]
-    val dbUrl =
-        "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path +
-                "?sslmode=require" + "&user=$username&password=$password"*/
+    val dbUrl = "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path
 
-    config.jdbcUrl = System.getenv("DATABASE_URL_KTOR")
+    config.jdbcUrl = /*System.getenv("DATABASE_URL_KTOR")*/ dbUrl
     config.username = System.getenv("USERNAME")
     config.password = System.getenv("PASSWORD")
     config.schema = "SebbiaStories"
