@@ -10,7 +10,7 @@ class StoriesController {
 
     private val transaction = InsertController()
     val tokenController = KGraphQL.schema {
-        query("getEmail") {
+        query("getTokenFromEmail") {
             resolver { email: String ->
                 transaction {
                     Client.slice(Client.email).select { Client.email eq email }.map { Client.getEmail(it) }
