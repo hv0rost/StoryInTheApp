@@ -1,1 +1,1 @@
-# backend-story-in-the-app
+# Server for StoryApp hosted by heroku
