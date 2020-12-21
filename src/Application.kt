@@ -29,10 +29,11 @@ fun Application.module(testing: Boolean = false) {
     val query = StoriesController()
     install(CORS)
     {
+        //exposeHeader("key")
         method(HttpMethod.Options)
         header(HttpHeaders.XForwardedProto)
         anyHost()
-        //host("my-host")
+        host("my-host")
         // host("my-host:80")
         // host("my-host", subDomains = listOf("www"))
         // host("my-host", schemes = listOf("http", "https"))
