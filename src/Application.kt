@@ -60,7 +60,7 @@ fun Application.module(testing: Boolean = false) {
     }
 
     routing {
-        get("/screen-test") {
+        post("/screen-test") {
             val graphQLRequest = call.receive<GraphQLRequest>()
             call.respond(query.screenController.execute(graphQLRequest.query!!))
         }
