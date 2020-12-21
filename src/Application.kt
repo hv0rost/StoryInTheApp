@@ -15,6 +15,7 @@ import org.jetbrains.exposed.sql.Database
 import java.io.PrintWriter
 import java.net.URI
 import java.net.URL
+import java.time.Duration
 import java.util.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -26,6 +27,19 @@ fun Application.module(testing: Boolean = false) {
     //dbInnit("a1640Z89")
     Database.connect(hikari())
     val query = StoriesController()
+    install(CORS)
+    {
+        method(HttpMethod.Options)
+        header(HttpHeaders.XForwardedProto)
+        anyHost()
+        //host("my-host")
+        // host("my-host:80")
+        // host("my-host", subDomains = listOf("www"))
+        // host("my-host", schemes = listOf("http", "https"))
+        allowCredentials = true
+        allowNonSimpleContentTypes = true
+        maxAge = Duration.ofDays(1)
+    }
     install(ContentNegotiation) {
         gson {
             setPrettyPrinting()
