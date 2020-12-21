@@ -31,6 +31,7 @@ fun Application.module(testing: Boolean = false) {
     {
         method(HttpMethod.Options)
         header(HttpHeaders.XForwardedProto)
+        header("Authorization")
         anyHost()
         allowSameOrigin = true
         allowCredentials = true
