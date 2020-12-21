@@ -33,13 +33,14 @@ fun Application.module(testing: Boolean = false) {
         method(HttpMethod.Options)
         header(HttpHeaders.XForwardedProto)
         anyHost()
-        host("my-host")
+        //host("my-host")
         // host("my-host:80")
         // host("my-host", subDomains = listOf("www"))
         // host("my-host", schemes = listOf("http", "https"))
+        allowSameOrigin = true
         allowCredentials = true
         allowNonSimpleContentTypes = true
-        maxAge = Duration.ofDays(1)
+        maxAgeInSeconds = 80000
     }
     install(ContentNegotiation) {
         gson {
