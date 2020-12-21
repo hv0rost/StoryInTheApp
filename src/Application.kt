@@ -31,16 +31,18 @@ fun Application.module(testing: Boolean = false) {
     {
         //exposeHeader("key")
         method(HttpMethod.Options)
+        method(HttpMethod.Get)
+        method(HttpMethod.Post)
+        method(HttpMethod.Put)
+        method(HttpMethod.Delete)
+        method(HttpMethod.Patch)
+        header(HttpHeaders.Authorization)
         header(HttpHeaders.XForwardedProto)
+        header("Content-Type")
         anyHost()
-        //host("my-host")
-        // host("my-host:80")
-        // host("my-host", subDomains = listOf("www"))
-        // host("my-host", schemes = listOf("http", "https"))
         allowSameOrigin = true
         allowCredentials = true
         allowNonSimpleContentTypes = true
-        maxAgeInSeconds = 80000
     }
     install(ContentNegotiation) {
         gson {
