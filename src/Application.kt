@@ -29,16 +29,8 @@ fun Application.module(testing: Boolean = false) {
     val query = StoriesController()
     install(CORS)
     {
-        //exposeHeader("key")
         method(HttpMethod.Options)
-        method(HttpMethod.Get)
-        method(HttpMethod.Post)
-        method(HttpMethod.Put)
-        method(HttpMethod.Delete)
-        method(HttpMethod.Patch)
-        header(HttpHeaders.Authorization)
         header(HttpHeaders.XForwardedProto)
-        header("Content-Type")
         anyHost()
         allowSameOrigin = true
         allowCredentials = true
@@ -64,11 +56,11 @@ fun Application.module(testing: Boolean = false) {
             val graphQLRequest = call.receive<GraphQLRequest>()
             call.respond(query.screenController.execute(graphQLRequest.query!!))
         }
-        get("/client") {
+        post("/client") {
             val graphQLRequest = call.receive<GraphQLRequest>()
             call.respond(query.clientController.execute(graphQLRequest.query!!))
         }
-        get("/generate-token") {
+        post("/generate-token") {
             val graphQLRequest = call.receive<GraphQLRequest>()
             val emailKey = TokenKey(
                 (query.tokenController.execute(graphQLRequest.query!!)
@@ -82,19 +74,19 @@ fun Application.module(testing: Boolean = false) {
             )
         }
         authenticate {
-            get("/story") {
+            post("/story") {
                 val graphQLRequest = call.receive<GraphQLRequest>()
                 call.respond(query.storyController.execute(graphQLRequest.query!!))
             }
-            get("/screen") {
+            post("/screen") {
                 val graphQLRequest = call.receive<GraphQLRequest>()
                 call.respond(query.screenController.execute(graphQLRequest.query!!))
             }
-            get("/text") {
+            post("/text") {
                 val graphQLRequest = call.receive<GraphQLRequest>()
                 call.respond(query.textController.execute(graphQLRequest.query!!))
             }
-            get("/button") {
+            post("/button") {
                 val graphQLRequest = call.receive<GraphQLRequest>()
                 call.respond(query.buttonController.execute(graphQLRequest.query!!))
             }
