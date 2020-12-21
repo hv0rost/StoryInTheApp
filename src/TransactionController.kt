@@ -142,4 +142,12 @@ class InsertController {
         }
         return 0
     }
+    fun getToken(token : String, email : String) : String {
+        transaction {
+            Client.update({ Client.email eq email }) {
+                it[Client.token] = token
+            }
+        }
+        return token
+    }
 }

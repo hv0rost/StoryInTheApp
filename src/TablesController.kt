@@ -18,15 +18,11 @@ class StoriesController {
             }
         }
         mutation("postToken"){
-            resolver { token : String , email : String ->
-                transaction {
-                    Client.update({ Client.email eq email }) {
-                        it[Client.token] = token
-                    }
+            resolver { token : String , email : String  ->
+                        transaction.getToken(token,email)
                 }
             }
         }
-    }
 
     val storyController = KGraphQL.schema {
         query("getStory") {
