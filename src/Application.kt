@@ -42,6 +42,9 @@ fun Application.module(testing: Boolean = false) {
     }
 
     routing {
+        get("/") {
+            call.respondText("Hello there!", ContentType.Text.Html)
+        }
         get("/client") {
             val graphQLRequest = call.receive<GraphQLRequest>()
             call.respond(query.clientController.execute(graphQLRequest.query!!))

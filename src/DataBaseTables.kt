@@ -120,7 +120,7 @@ object Button : Table() {
             url = row[url]
         )
 }
-//endregion*/ //если локальные тесты, то расскоментить
+//endregion //если локальные тесты, то расскоментить*/
 
 //region remote
 val dm = 34.toChar()
